@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block css %} 
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/profile.css') }}"/>
+{% endblock%}
+{% block main %}
+<h2>Your Wishlist</h2>
+
+
+<div ng-app="viewWishlist" ng-controller="myController">
+    <div ng-repeat="item in Wishlist | orderBy:'-id'" class="row">
+        <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <div>
+                    <img src="{{'{{ item.thumbnail_url }}'}}" alt="{{'{{ item.thumbnail_url }}'}}" class="img-thumbnail img-responsive" style="max-height:200px;">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="panel panel-default" style="min-height:200px;">
+                        <div class="panel-heading"><h4><b>{{'{{ item.title }}'}}
+                            <a title="Delete item from wishlist" ng-click="removeWishlist($event, item.id)"><span style="color:red;" class="glyphicon glyphicon-remove pull-right"></span></a>
+                            </b></h4></div>
+                        <div class="panel-body">
+                            <h5><b>Description: </b>{{'{{ item.description }}'}}</h5><br>
+                            <h5><b>Link: </b><a href="{{'{{ item.url }}'}}">View item page here</a></h5>
+                        </div>
+                    </div>
+                    <br>
+                </div>
+                <br>     
+            </div>
+            <br>
+        </div>
+    <br>
+</div>
+{% endblock %}
+{% block js %}
+<script src="/static/js/angular.min.js"></script>
+<script src="/static/js/viewWishlist.js"></script>
+{% endblock %}

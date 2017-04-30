@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block main %}
+<h2>Add a Wishlist Item</h2>
+</div>
+<div class="container" ng-app="thumbnail" ng-controller="myController">
+
+<form class="form-horizontal">
+<div class="form-group has-feedback">
+    <label class="col-sm-2 col-sm-offset-1 control-label" for="title"><h4>Link</h4></label>
+        <div class="col-sm-5">
+            <input ng-model="link" ng-change="loadImages($event)" name="title" id="title" class="form-control" type="text">
+            <p class="help-block">Enter the link of the item here.</p>
+                    <p class="text-danger"></p>
+        </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 col-sm-offset-1 control-label" for="title"><h4>Title</h4></label>
+        <div class="col-sm-5">
+            <input ng-model="title" name="title" id="title" class="form-control" type="text">
+            <p class="help-block">Enter the title of the item here.</p>
+                    <p class="text-danger"></p>
+        </div>
+</div>
+<div class="form-group has-feedback">
+    <label class="col-sm-2 col-sm-offset-1 control-label" for="title"><h4>Description</h4></label>
+        <div class="col-sm-5">
+            <input ng-model="description" name="title" id="title" class="form-control" type="text">
+            <p class="help-block">Enter the description of the item here.</p>
+                    <p class="text-danger"></p>
+        </div>
+</div>
+</form>
+<h4 class="col-xs-offset-2">Select image for wishlist item</h4>
+
+
+
+<div class="container col-sm-5 col-sm-offset-3" id="ImagesDiv">
+<div>
+	<div class="row">
+        <div class="col-xs-12" ng-repeat="image in images track by $index">
+            <div ng-click="selectedImage($event)" class="thumbnail">
+                <img src="{{'{{ image }}'}}" alt="{{'{{ image }}'}}" style="width:50%">
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="col-sm-9 col-sm-offset-3">
+    <br><button ng-click="submitWishlist($event)" type="submit" class="btn btn-primary btn-md"><span class="glyphicon glyphicon-plus"></span> Add Item</button>
+</div>
+    
+
+
+</div>
+
+
+{% endblock %}
+{% block js %}
+<script src="/static/js/angular.min.js"></script>
+<script src="/static/js/addWishlist.js"></script>
+{% endblock %}

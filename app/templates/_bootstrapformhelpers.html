@@ -1,0 +1,80 @@
+{% macro anyErrorsClass(form, field) %}
+    {% if form.FormSubmitted %}
+        {% if field.errors %}has-error{% else %}has-success{% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro fieldValid(form, field) %}
+    {% if form.FormSubmitted %}
+        {% if field.errors %}
+            <span class="glyphicon glyphicon-remove form-control-feedback"></span>
+        {% else %}
+            <span class="glyphicon glyphicon-ok form-control-feedback"></span>
+        {% endif %}
+    {% endif %}
+{% endmacro %}
+
+{% macro render_bootstrap_field(form, field) %}
+
+{% if 'StringField' in field.type or 'PasswordField' in field.type or 'IntegerField' in field.type %}
+<div class="form-group {{ anyErrorsClass(form, field) }} has-feedback">
+    <label class="col-sm-2 col-sm-offset-1 control-label" for="{{ field.id }}">
+    {{ field.label }}</label>
+    <div class="col-sm-5">
+      {{ field(class='form-control') }}
+      {{ fieldValid(form, field) }}
+      {% if field.errors %}
+            {% for error in field.errors %}
+                <span class="control-label">{{ error }}</span><br>
+            {% endfor %}
+        {% endif %}
+    </div>
+  </div>
+{% endif %}
+
+{% if 'BooleanField' in field.type %}
+<div class="form-group has-feedback">
+    <div class="col-sm-5">
+            <div class="checkbox control-label">
+                <label>{{ field(default="unchecked", data="False") }}{{ field.label }}</label>
+            </div> 
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+    </div>
+</div>
+{% endif %}
+
+{% if 'FileField' in field.type %}
+<div class="form-group has-feedback">
+    <label class="col-sm-2 col-sm-offset-1 control-label text-left" for="{{ field.id }}">{{ field.label }}</label>
+        <div class="col-sm-5">
+            {{ field(class="form-control") }}
+            <p class="help-block">Upload a jpg, jpeg, or png image here.</p>
+            {% if field.errors %}
+                {% for error in field.errors %}
+                    <p class="text-danger">{{ error }}</p>
+                {% endfor %}
+            {% endif %}
+        </div>
+</div>
+{% endif %}
+
+{% if 'SelectField' in field.type %}
+<div class="form-group {{ anyErrorsClass(form, field) }} has-feedback">
+    <label class="col-sm-2 col-sm-offset-1 control-label text-left" for="{{ field.id }}">{{ field.label }}</label>
+        <div class="col-sm-5">
+            {{ field(class="form-control text-center") }}
+            {{ fieldValid(form, field) }}
+                {% if field.errors %}
+                        {% for error in field.errors %}
+                            <span class="control-label">{{ error }}</span><br>
+                        {% endfor %}
+                {% endif %}
+        </div>
+</div>
+{% endif %}
+
+{% endmacro %}}

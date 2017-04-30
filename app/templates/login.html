@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>Log In</h2><br>
+
+{% from "_bootstrapformhelpers.html" import render_bootstrap_field %}
+<form class="form-horizontal" action="{{ url_for('login') }}" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ render_bootstrap_field(form,form.username) }}
+    {{ render_bootstrap_field(form,form.password) }}
+    
+    
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary btn-md">Log in <span class="glyphicon glyphicon-log-in"></span></button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}

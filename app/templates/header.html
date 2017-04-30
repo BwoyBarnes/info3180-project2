@@ -1,0 +1,46 @@
+<nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="{{ url_for('home') }}">Wishify</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li {%- if request.path == "/" %} class="active"{% endif %}>
+                <a href="{{ url_for('home') }}">Home</a>
+            </li>
+
+            {% if current_user.is_authenticated %}
+            <li {%- if request.path == "/addItem" %} class="active"{% endif %}>
+                <a href="{{ url_for('viewWishlistRedirect') }}">View Wishlist</a>
+            </li>
+            
+            <li {%- if request.path == "/addItem" %} class="active"{% endif %}>
+                <a href="{{ url_for('wishlistRedirect') }}">Add Wishlist Item</a>
+            </li>
+            
+            <li {%- if request.path == "/profile" %} class="active"{% endif %}>
+                <a href="{{ url_for('profile') }}">My Profile</a>
+            </li>
+            {% endif %}
+          </ul>
+
+          <ul class="nav navbar-nav navbar-right">
+            {% if not current_user.is_authenticated %}
+                <li><a href="{{ url_for('login') }}">Login</a></li>
+                <li class="active"><a href="{{ url_for('register') }}">Sign Up</a></li>                
+            {% else %} 
+                <li class="active"><a href="{{ url_for('logout') }}">Logout</a></li>
+            {% endif %}
+                <li><a href="{{ url_for('about') }}">About</a></li>
+            
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+</nav>
+

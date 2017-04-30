@@ -1,0 +1,40 @@
+body { font-family: Arial, Helvetica, sans-serif; }
+
+h1 { border-bottom: 1px solid #DDDDDD; }
+
+#ProfilePic{
+    padding: 5px;
+    border: 1px solid #DDDDDD;
+    border-radius: 5px;
+    float: left;
+    height: 200px;
+    width: 200px;
+}
+
+.biobox {
+    margin-left: 20px;
+    float:left;
+    border-radius: 5px;
+    width: 400px;
+    border: 1px solid #DDDDDD;
+}
+
+.biobox > div {
+    position:relative;
+    padding: 10px;
+}
+
+#Name {
+    padding: 10;
+    background-color: #F5F5F5;
+    border-bottom: 1px solid #DDDDDD ;
+    border-radius: 5px 5px 0px 0px;
+}
+
+.bottomborder:before {
+    content: "";
+    position: absolute;
+    width: 95%;
+    bottom: -1px;
+    border-bottom: 1px solid #DDDDDD;
+}

@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block main %}
+<h2>Create A User Profile</h2><br>
+
+{% from "_bootstrapformhelpers.html" import render_bootstrap_field %}
+<form class="form-horizontal" action="{{ url_for('register') }}" method="POST" enctype="multipart/form-data">
+    {{ form.csrf_token }}
+    {{ render_bootstrap_field(form,form.fName) }}
+    {{ render_bootstrap_field(form,form.lName) }}
+    {{ render_bootstrap_field(form,form.userName) }}
+    {{ render_bootstrap_field(form,form.password) }}
+    {{ render_bootstrap_field(form,form.confirm) }}
+    {{ render_bootstrap_field(form,form.gender) }}
+    {{ render_bootstrap_field(form,form.age) }}
+    {{ render_bootstrap_field(form,form.bio) }}
+    {{ render_bootstrap_field(form,form.imgfile) }}
+    
+    
+    <div class="form-group">
+        <div class="col-sm-offset-3 col-sm-9">
+            <button type="submit" class="btn btn-primary btn-md">Sign up <span class="glyphicon glyphicon-send"></span></button>
+        </div>
+    </div>
+</form>
+
+{% endblock %}
